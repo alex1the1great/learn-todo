@@ -5,6 +5,7 @@
     <input type="checkbox" name="todo" id="is_completed"
     {% if todo.is_completed %} checked {% endif %}>
     <label for="is_completed">Completed</label>
+    <a href="{% url 'todo_edit' todo.id %}">Edit</a>
     <a href="{% url 'todo_delete' todo.id %}">Delete</a>
     <hr>
 {% endfor %}

@@ -20,6 +20,17 @@ def todo_add(request):
     return render(request, 'todo/todo_add.html', {'form': form})
 
 
+def todo_edit(request, todo_id):
+    todo = get_object_or_404(Todo, id=todo_id)
+    form = TodoForm(instance=todo)
+    if request.method == 'POST':
+        form = TodoForm(data=request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('todo_list')
+    return render(request, 'todo/todo_edit.html', {'form': form, 'todo': todo})
+
+
 def todo_delete(request, todo_id):
     todo = get_object_or_404(Todo, id=todo_id)
     todo.delete()
