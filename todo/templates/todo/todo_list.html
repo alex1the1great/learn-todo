@@ -1,6 +1,11 @@
 <h1>Todos</h1>
 <p><a href="{% url 'todo_add' %}">Add Todo</a></p>
 {% for todo in todos %}
-    <h3>{{ todo }} <a href="{% url 'todo_delete' todo.id %}">Delete</a></h3>
+    <h3>{{ todo.name }}</h3>
+    <input type="checkbox" name="todo" id="is_completed"
+    {% if todo.is_completed %} checked {% endif %}>
+    <label for="is_completed">Completed</label>
+    <a href="{% url 'todo_delete' todo.id %}">Delete</a>
+    <hr>
 {% endfor %}
 
